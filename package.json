@@ -1,0 +1,17 @@
+{
+  "name": "final_project",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "jquery.js",
+  "scripts": {
+    "prettier": "prettier",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@prettier/plugin-php": "^0.25.0",
+    "prettier": "^3.8.3"
+  }
+}

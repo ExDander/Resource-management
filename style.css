@@ -1,0 +1,685 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+:root {
+  --text-dark: #333;
+
+  --text-light: #eee;
+  --color-error: #8a1313;
+  --color-success: #0d8b37;
+
+  --color-white: #fff;
+  --color-primary: #7380ec;
+  --color-info-dark: #7d8da1;
+  --color-info-light: #dce1eb;
+  --color-dark: #363949;
+  --color-light: rgba(132, 139, 200, 0.18);
+  --color-primary-variant: #111e88;
+  --color-dark-variant: #677483;
+  --color-background: #f6f6f9;
+
+  --primary-btn: #422e3c;
+  --primary-btn-hover: #422e3c;
+
+  --card-border-radius: 2rem;
+  --border-radius-1: 0.4rem;
+  --border-radius-2: 0.8rem;
+  --border-radius-3: 1.2rem;
+
+  --card-padding: 1.8rem;
+  --padding-1: 1.2rem;
+  --border-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+
+  --border-radius: 10px;
+
+  --available: rgb(75, 160, 113);
+  --available-hover: rgb(58, 129, 90);
+  --available-light: rgba(58, 129, 90, 0.1);
+
+  --in-use: rgb(84, 163, 163);
+  --in-use-hover: rgb(67, 130, 130);
+  --in-use-light: rgba(84, 163, 163, 0.1);
+
+  --reserved: rgb(223, 149, 13);
+  --reserved-hover: rgb(184, 108, 9);
+  --reserved-light: rgba(223, 149, 13, 0.1);
+
+  --under-maintenance: rgb(207, 58, 115);
+  --under-maintenance-light: rgba(158, 40, 85, 0.1);
+
+  --returned: rgb(177, 58, 207);
+  --returned-light: rgba(177, 58, 207, 0.1);
+  
+  --unavailable: rgb(163, 151, 156);
+  --unavailable-hover: rgb(129, 121, 125);
+  --unavailable-light: rgba(163, 151, 156, 0.1);
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', serif;
+  text-decoration: none;
+}
+
+/* LOGIN/REGISTER PAGE SETTINGS */
+.indexpage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-image: url("../img/malvar-1-scaled.png"); */
+  min-height: 100vh;
+  color: var(--text-dark);
+}
+
+.container {
+  margin: 0 15px;
+  /* top & bottom margin -- left & right margin px*/
+}
+
+/*Box containing all the elements*/
+.form-box {
+  width: 100%;
+  max-width: 450px;
+  padding: 30px;
+  background: var(--color-white);
+  border-radius: var(--border-radius);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  display: none;
+}
+
+.form-box.active {
+  display: block;
+}
+
+h2.welcome {
+  font-size: 34px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/*input or type boxes*/
+input,
+select {
+  width: 100%;
+  padding: 12px;
+  padding-right: 10px;
+  background: var(--text-light); /* search box bg color */
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  color: var(--text-dark); /*search box text color*/
+  margin-bottom: 20px;
+}
+
+button.login-register {
+  width: 100%;
+  padding: 12px;
+  background: var(--primary-btn); /* button color */
+  border-radius: 10px;
+  color: var(--color-white);
+  cursor: pointer;
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  transition: 0.5s;
+}
+
+button.login-register:hover {
+  background: #2b1e27;
+}
+
+p.reminder {
+  font-size: 14.5px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+p a {
+  color: #7494ec;
+  text-decoration: none;
+}
+
+p a:hover {
+  text-decoration: underline;
+}
+
+.error-message {
+  padding: 12px;
+  background: #eee;
+  border-radius: 6px;
+  font-size: 16px;
+  color: var(--color-error);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.success-message {
+  padding: 12px;
+  background: #eee;
+  border-radius: 6px;
+  font-size: 16px;
+  color: var(--color-success);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* ----------ADMIN/USER PAGE SETTINGS----------- */
+.adminpage,
+.userpage {
+  width: 100vw;
+  height: 100vh;
+  font-size: 0.88rem;
+  /* background-image: url("../img/malvar-1-scaled.png"); */
+  background: var(--color-background);
+  user-select: none;
+  overflow-x: hidden;
+}
+
+.text-muted {
+  color: var(--color-info-dark);
+}
+
+/* ---------DASHBOARD SETTINGS------------ */
+/* Update this section in your CSS */
+.dashcontainer {
+  display: grid;
+  grid-template-columns: 250px 1fr; /* Fixed sidebar width, flexible main */
+  width: 100vw;
+  height: 100vh; /* Lock container to screen height */
+  margin: 0; /* Remove margin auto to ensure it fills the width */
+  overflow: hidden; /* Prevents the whole body from scrolling */
+}
+
+a {
+  color: var(--text-dark);
+}
+
+h1 {
+  font-weight: 800;
+  font-size: 1.8rem;
+}
+
+h2 {
+  font-size: 1.4rem;
+}
+
+h3 {
+  font-size: 0.87rem;
+}
+
+h4 {
+  font-size: 0.8rem;
+}
+
+h5 {
+  font-size: 0.77rem;
+}
+
+aside {
+  height: 100vh;
+  width: 250px;
+  background: white;
+  box-shadow: var(--border-shadow);
+}
+aside .top {
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centers them vertically if needed */
+  margin-top: 1.4rem;
+  padding-left: 1.5rem;
+  align-items: start;
+}
+
+/* =================SIDEBAR SETTINGS================== */
+
+aside .sidebar {
+  background: white;
+  display: flex;
+  flex-direction: column;
+  height: 86vh;
+  position: relative;
+  top: 3rem;
+}
+
+aside .sidebar a {
+  display: flex;
+  color: var(--color-info-dark);
+  margin-left: 2rem;
+  gap: 1rem;
+  align-items: center;
+  position: relative;
+  height: 3.7rem;
+  transition: all 300ms ease;
+}
+
+aside .sidebar a span {
+  font-size: 1.5rem;
+  transition: all 300ms ease;
+}
+
+aside h3 {
+  font-weight: 500;
+}
+
+aside .sidebar a:last-child {
+  position: absolute;
+  bottom: 2rem;
+  width: 100%;
+}
+
+aside .sidebar a.active {
+  background: var(--color-light);
+  color: var(--color-primary);
+  margin-left: 0;
+}
+aside .sidebar a.active:before {
+  content: '';
+  width: 6px;
+  height: 100%;
+  background: var(--color-primary);
+}
+
+aside .sidebar a.active span {
+  color: var(--color-primary);
+  margin-left: calc(1rem - 3px);
+}
+
+aside .sidebar a:hover {
+  color: var(--color-primary);
+}
+
+aside .sidebar a:hover span {
+  margin-left: 1rem;
+}
+
+/* ------------------ MAIN ---------------------- */
+/* Update this section in your CSS */
+main {
+  padding-top: 1.4rem; /* Changed from margin to padding for better scroll behavior */
+  padding-right: 2rem; /* Add some space for the scrollbar */
+  padding-left: 2rem; /* Add some space for the scrollbar */
+  overflow-y: auto;
+  width: 100%;
+  height: 100vh; /* Matches the viewport */ /* THIS ADDS THE SCROLLBAR */
+}
+
+main .insights {
+  display: grid;
+  /* Tells cards: "Be 200px wide unless the screen gets too small, then stack" */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.6rem;
+  margin-bottom: 1.4rem;
+}
+
+main .insights > div {
+  background: white;
+  padding: var(--card-padding);
+  border-radius: var(--border-radius);
+  height: 330px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-top {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  position: relative;
+  height: 3.7rem;
+  transition: all 300ms ease;
+}
+
+.card-top span {
+  font-size: 2rem;
+  justify-content: center;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.card-content {
+  display: flex;
+  gap: 30px;
+  height: 100%;
+}
+
+.amount,
+.amount-label {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.amount {
+  width: 5%;
+}
+
+#available {
+  color: var(--available);
+}
+#in-use {
+  color: var(--in-use);
+}
+#reserved {
+  color: var(--reserved);
+}
+#under-maintenance {
+  color: var(--under-maintenance);
+}
+
+.container-1 {
+  width: 100%;
+  padding: 20px;
+ 
+  background: var(--color-white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--border-shadow);
+}
+
+.title {
+  margin-bottom: 0.5rem;
+}
+
+.dashboard-info {
+  display: flex;
+  gap: 25px;
+}
+
+.action-container {
+  display: flex;
+  gap: 5px;
+  justify-content: space-between;
+}
+
+/* .action-container > :last-child {
+    margin-left: auto;
+} */
+
+.reserve-use {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  background: rgb(238, 235, 235);
+  border-radius: 1.5rem;
+  padding: 5px 10px;
+  width: fit-content;
+  gap: 5px;
+  align-items: center;
+  color: var(--color-dark);
+  font-size: .8rem;
+  transition: all 0.3s ease; 
+}
+
+.admin-controls {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  justify-content: flex-end;
+}
+.user-controls {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+#delete-btn {
+  background:none; 
+  border:none; 
+  color:red; 
+  cursor:pointer;
+}
+/* ==============Floating Button ===================*/
+.fab-button {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  min-width: 60px;
+  width: fit-content;
+  height: 60px;
+  border-radius: 10rem;
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  gap: 5px;
+  border: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.2s;
+}
+
+.fab-button:hover {
+  transform: scale(1.1);
+}
+
+/* Modal Background Overlay */
+.modal-overlay {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 1001;
+  justify-content: center;
+  align-items: center;
+}
+
+/* The Popup Box */
+.modal-content {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 400px;
+  position: relative;
+  transform: scale(0.7);
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Animation State when Active */
+.modal-overlay.active {
+  display: flex;
+}
+.modal-overlay.active .modal-content {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* Close Button and Header */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.close-btn {
+  cursor: pointer;
+  color: #666;
+}
+
+/* Base Badge Style */
+.status-badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center; /* Centers horizontally too */
+}
+
+/* Active: Soft Green */
+.status-available {
+  background-color: var(--available);
+  color: var(--color-white);
+}
+.status-available:hover {
+  background-color: var(--available-hover);
+  color: var(--color-white);
+}
+.status-available-badge {
+  background-color: var(--available-light);
+  color: var(--available);
+}
+.status-unavailable {
+  background-color: var(--unavailable);
+  color: var(--color-white);
+}
+.status-unavailable:hover {
+  background-color: var(--unavailable-hover);
+  color: var(--color-white);
+}
+.status-unavailable-badge {
+  background-color: var(--unavailable-light);
+  color: var(--unavailable);
+}
+
+.status-in-use {
+  background-color: var(--in-use);
+  color: var(--color-white);
+}
+.status-in-use:hover {
+  background-color: var(--in-use-hover);
+  color: var(--color-white);
+}
+.status-in-use-badge {
+  background-color: var(--in-use-light);
+  color: var(--in-use);
+}
+
+.status-reserved {
+  background-color: var(--reserved);
+  color: var(--color-white);
+}
+.status-reserved:hover {
+  background-color: var(--reserved-hover);
+  color: var(--color-white);
+}
+.status-reserved-badge {
+  background-color: var(--reserved-light);
+  color: var(--reserved);
+}
+/* Under Maintenance: Soft Red */
+.status-under-maintenance {
+  background-color: var(--under-maintenance);
+  color: var(--color-white);
+}
+.status-under-maintenance:hover {
+  background-color: var(--under-maintenance-hover);
+  color: var(--color-white);
+}
+
+.status-under-maintenance-badge {
+  background-color: var(--under-maintenance-light);
+  color: var(--under-maintenance);
+}
+
+.status-returned {
+  background-color: var(--returned);
+  color: var(--color-white);
+}
+.status-returned-badge {
+  background-color: var(--returned-light);
+  color: var(--returned);
+}
+.table-controls {
+    border-bottom: 1px solid #eee;
+}
+
+.filter-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+}
+
+/* Common style for all inputs and selects */
+.filter-form input, 
+.filter-form select {
+    padding: 8px 12px;
+    border: 1px solid #e7e5e5;
+    background-color: white;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Specific width for search boxes */
+input[name="search_user"], 
+input[name="search_resource"] {
+    flex: 1; /* Grows to fill space */
+    min-width: 150px;
+}
+
+/* Date labels styling */
+.date-group label {
+    font-size: 13px;
+    margin-right: 5px;
+    color: #4e4b4b;
+}
+
+/* Simple Button */
+.btn-reset {
+    background: none;
+    border: 1px solid #ccc;
+    padding: 7px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.btn-reset:hover {
+    background: #f5f5f5;
+}
+
+/* Base style for all action buttons to match the badge */
+.btn-return, .btn-use {
+  /* Copying your badge styles */
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* Resetting button defaults */
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  text-decoration: none;
+}
+
+/* Color variations */
+.btn-return {
+  background-color: var(--unavailable-light); /* Light red background */
+  color: var(--unavailable);            /* Dark red text */
+}
+
+.btn-use {
+  background-color: var(--unavailable-light); /* Light green background */
+  color: var(--unavailable);            /* Dark green text */
+}
+
+/* Hover effect so they still feel like buttons */
+.btn-return:hover, .btn-use:hover {
+  background-color: var(--unavailable-hover);
+}
