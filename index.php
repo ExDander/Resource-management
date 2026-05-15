@@ -38,7 +38,7 @@ function showMessage($message)
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
-    <title>Login/Register</title>
+  <title>Login/Register</title>
 </head>
 
 <body class="indexpage">
@@ -53,14 +53,14 @@ function showMessage($message)
         <input type="text" name="tr_code" placeholder="TR-Code" required>
         <input type="password" name="password" placeholder="Password" required>
         <button type="submit" class="login-register" name="login">Login</button>
-        <p class="reminder"> Don't have an account? <a href="#" onclick="showForm('register-form')">Register</a></p>
       </form>
     </div>
 
-    <div class="form-box <?= isActiveForm('register', $activeForm) ?>" id="register-form">
+    <!-- 
+     <div class="form-box <?= isActiveForm('register', $activeForm) ?>" id="register-form">
       <form action="login_register.php" method="post">
         <h2 class="welcome">Register</h2>
-        <!-- shows error via html element using showError Function -->
+         shows error via html element using showError Function
         <?= showError($errors['register']) ?>
         <input type="text" name="first_name" placeholder="First Name" required>
         <input type="text" name="last_name" placeholder="Last Name" required>
@@ -76,16 +76,16 @@ function showMessage($message)
 
         <select name="department" required>
           <option value="">Select Department</option>
-          <option value="1">CICS<!--   College of Information and Computing Sciences --></option>
-          <option value="2">CET <!-- College of Engineering and Technology --></option>
-          <option value="3">CAS <!-- College of Arts and Sciences --></option>
-          <option value="4">CABEIHM <!-- College of Accountancy, Business, Economics & International Hospitality Management --></option>
+          <option value="1">CICS</option>
+          <option value="2">CET</option>
+          <option value="3">CAS</option>
+          <option value="4">CABEIHM</option>
         </select>
 
         <button type="submit" class="login-register" name="register">Register</button>
         <p class="reminder"> Already have an account? <a href="#" onclick="showForm('login-form')">Login</a></p>
       </form>
-    </div>
+    </div> -->
   </div>
 
   <script src="script.js"></script>
