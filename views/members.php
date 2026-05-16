@@ -76,6 +76,7 @@ $members = $conn->query($sql);
 </div>
 
 <!-- 2. Edit Member Modal (Updated with TR Code) -->
+<!-- 2. Edit Member Modal (Updated with Optional Password) -->
 <div id="edit-member-modal-overlay" class="modal-overlay">
     <div class="container-1 modal-content">
         <div class="modal-header">
@@ -103,10 +104,16 @@ $members = $conn->query($sql);
                 <option value="2">Faculty</option>
             </select>
 
+            <!-- New Password Field -->
+            <label>New Password:</label>
+            <input type="password" name="password" id="edit-password" placeholder="Leave blank to keep current password">
+            <small style="color: #666; display: block; margin-top: -5px; margin-bottom: 10px;">Only fill this out if you want to change the password.</small>
+
             <input type="submit" value="Update Member" style="width: 100%; margin-top: 10px;">
         </form>
     </div>
 </div>
+
 
 <div class="resources" id="members">
     <?php if ($members && $members->num_rows > 0): ?>

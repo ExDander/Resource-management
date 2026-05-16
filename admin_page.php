@@ -56,6 +56,13 @@ if (!isset($_SESSION['email'])) {
                     <span class="material-symbols-sharp"> history </span>
                     <h3>History</h3>
                 </a>
+
+                <a href="#" class="sidebar-link" data-section="settings">
+                    <span class="material-symbols-sharp">
+                        settings
+                    </span>
+                    <h3>Account</h3>
+                </a>
                 <!-- Logout stays a noral link -->
                 <a href="logout.php">
                     <span class="material-symbols-sharp">logout</span>
