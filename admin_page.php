@@ -28,8 +28,11 @@ if (!isset($_SESSION['email'])) {
     <div class="dashcontainer">
         <aside>
             <div class="top">
-                <h1 style="color: white;"><?= $_SESSION['departmentDisplay'] ?> <?= $_SESSION['role'] ?></h1>
-                <h2 style="color: white;"><?= $_SESSION['name'] ?></h2>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0k98o10a-aETn-9WbEtua2omE1OqJ7HnD5g&amp;s" alt="Logo" class="header-logo">
+                <div style="display: flex; flex-direction: column;" gap="10px" align-items="center">
+                    <h1 style="color: white; font-size: 1.5rem;"><?= $_SESSION['departmentDisplay'] ?> <?= $_SESSION['role'] ?></h1>
+                    <h2 style="color: white; font-size: 1rem;"><?= $_SESSION['name'] ?></h2>
+                </div>
             </div>
             <div class="sidebar">
                 <!-- Added data-section attributes and removed 'active' from HTML (we'll handle it in JS) -->

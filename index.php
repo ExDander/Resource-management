@@ -6,6 +6,7 @@ session_start();
 $errors = [
   'login' => $_SESSION['login_error'] ?? '',
   'register' => $_SESSION['register_error'] ?? '',
+  'tos' => $_SESSION['tos_error'] ?? '', // For tracking backend validation errors
 ];
 
 /* DETERMINE WHICH FORM IS ACTIVE */
@@ -43,50 +44,43 @@ function showMessage($message)
 
 <body class="indexpage">
 
+  <!-- 1. HEADER ADDED HERE -->
+  <header class="main-header">
+    <div class="header-content">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0k98o10a-aETn-9WbEtua2omE1OqJ7HnD5g&amp;s" alt="Logo" class="header-logo">
+      <h1>Resource Management System</h1>
+      <nav>
+        <a href="admin-contacts.php">Contacts</a>
+        <a href="index.php">Login</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- YOUR INITIAL ELEMENTS UNCHANGED -->
   <div class="container">
     <div class="form-box <?= isActiveForm('login', $activeForm) ?>" id="login-form">
       <form action="login_register.php" method="post">
         <h2 class="welcome">Login</h2>
         <!-- shows error via html element using showError Function -->
         <?= showError($errors['login']) ?>
+        <?= showError($errors['tos']) ?>
         <?= showMessage($successMessage) ?>
-        <input type="text" name="tr_code" placeholder="TR-Code" required>
-        <input type="password" name="password" placeholder="Password" required>
+        <input class="input" name="tr_code" placeholder="TR-Code" required>
+        <input class="input" type="password" name="password" placeholder="Password" required>
+
+        <!-- Terms of Service Checkbox Section -->
+        <div id="tos-container">
+          <input type="checkbox" id="tos" name="tos" value="1" required>
+          <label for="tos">I agree to the <a href="tos.php">Terms of Service</a></label>
+        </div>
+
         <button type="submit" class="login-register" name="login">Login</button>
       </form>
+      <hr>
+      <p style="margin-top: 20px;">Forgot password? <a href="admin-contacts.php">Contact your administrator.</a></p>
     </div>
-
-    <!-- 
-     <div class="form-box <?= isActiveForm('register', $activeForm) ?>" id="register-form">
-      <form action="login_register.php" method="post">
-        <h2 class="welcome">Register</h2>
-         shows error via html element using showError Function
-        <?= showError($errors['register']) ?>
-        <input type="text" name="first_name" placeholder="First Name" required>
-        <input type="text" name="last_name" placeholder="Last Name" required>
-        <input type="text" name="tr_code" placeholder="TR-code" required>
-        <input type="password" name="password" placeholder="Password" required>
-
-
-        <select name="role" required>
-          <option value="">Select Role</option>
-          <option value="1">Admin</option>
-          <option value="2">Faculty</option>
-        </select>
-
-        <select name="department" required>
-          <option value="">Select Department</option>
-          <option value="1">CICS</option>
-          <option value="2">CET</option>
-          <option value="3">CAS</option>
-          <option value="4">CABEIHM</option>
-        </select>
-
-        <button type="submit" class="login-register" name="register">Register</button>
-        <p class="reminder"> Already have an account? <a href="#" onclick="showForm('login-form')">Login</a></p>
-      </form>
-    </div> -->
   </div>
+
 
   <script src="script.js"></script>
 </body>
