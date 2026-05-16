@@ -162,92 +162,91 @@ $resources = $stmt->get_result();
         </div>
     </div>
 
-    <div class="dashboard-containers">
-        <div class="resources" id="resources">
-            <?php if ($resources && $resources->num_rows > 0): ?>
-                <table class="resource-table">
-                    <thead>
+    <div class="resources" id="resources">
+        <?php if ($resources && $resources->num_rows > 0): ?>
+            <table class="resource-table">
+                <thead>
+                    <tr>
+                        <th>Resource ID</th>
+                        <th>Resource Name</th>
+                        <th>Category</th>
+                        <th>Status</th>
+                        <th>Actions</th> <!-- New Header -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php while ($resource = $resources->fetch_assoc()): ?>
                         <tr>
-                            <th>Resource ID</th>
-                            <th>Resource Name</th>
-                            <th>Category</th>
-                            <th>Status</th>
-                            <th>Actions</th> <!-- New Header -->
+                            <td><?= htmlspecialchars($resource['Resource_ID']) ?></td>
+                            <td><?= htmlspecialchars($resource['Resource_Name']) ?></td>
+                            <td><?= htmlspecialchars($resource['Category_Name'] ?? 'No Category') ?></td>
+                            <td><?php
+                                $status = strtolower($resource['Status_Name'] ?? 'no status');
+                                // Create a slug (e.g., "In Use" becomes "status-in-use")
+                                $statusClass = 'status-' . str_replace(' ', '-', $status);
+                                ?>
+                                <span class="status-badge <?= $statusClass ?>-badge">
+                                    <?= htmlspecialchars($resource['Status_Name'] ?? 'No Status') ?>
+                                </span>
+                            </td>
+                            <td>
+                                <div class="action-container">
+                                    <?php if (strtolower($resource['Status_Name']) === 'available'): ?>
+                                        <div class="user-controls">
+
+                                            <!-- Reserve/Use Buttons -->
+                                            <button type="button" class="reserve-use open-reserve-btn status-reserved"
+                                                data-id="<?= $resource['Resource_ID'] ?>"
+                                                data-resource-name="<?= htmlspecialchars($resource['Resource_Name']) ?>">
+                                                <span class="material-icons">schedule</span> Reserve
+                                            </button>
+
+                                            <button type="button" class="reserve-use open-use-btn status-available"
+                                                data-id="<?= $resource['Resource_ID'] ?>"
+                                                data-resource-name="<?= htmlspecialchars($resource['Resource_Name']) ?>">
+                                                <span class="material-icons">today</span> Use
+                                            </button>
+                                        </div>
+                                    <?php else: ?>
+                                        <span class="status-badge status-unavailable-badge">
+                                            <span class="material-icons" style="font-size: 14px; vertical-align: middle;">error_outline</span> Unavailable
+                                        </span>
+                                    <?php endif; ?>
+
+                                    <!-- Admin Actions (Grouped inside the same container for alignment) -->
+                                    <?php if (strtolower($_SESSION['role']) === 'admin'): ?>
+                                        <div class="admin-controls">
+                                            <button type="button" class="reserve-use open-update-btn"
+                                                data-id="<?= $resource['Resource_ID'] ?>"
+                                                data-name="<?= htmlspecialchars($resource['Resource_Name']) ?>"
+                                                data-cat="<?= $resource['Categories_ID'] ?>"
+                                                data-status="<?= $resource['Status_ID'] ?>"> <!-- Pass Status ID here -->
+                                                <span class="material-icons">edit</span> Edit
+                                            </button>
+
+                                            <form class="ajax-form delete-form" method="POST" action="views/delete_resource.php"
+                                                onsubmit="return confirm('Delete this resource permanently?');">
+                                                <input type="hidden" name="resource_id" value="<?= $resource['Resource_ID'] ?>">
+                                                <button type="submit" class="reserve-use" id="delete-btn">
+                                                    <span class="material-icons">delete</span>
+                                                </button>
+                                            </form>
+
+                                        </div>
+                                    <?php endif; ?>
+
+                                </div>
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        <?php while ($resource = $resources->fetch_assoc()): ?>
-                            <tr>
-                                <td><?= htmlspecialchars($resource['Resource_ID']) ?></td>
-                                <td><?= htmlspecialchars($resource['Resource_Name']) ?></td>
-                                <td><?= htmlspecialchars($resource['Category_Name'] ?? 'No Category') ?></td>
-                                <td><?php
-                                    $status = strtolower($resource['Status_Name'] ?? 'no status');
-                                    // Create a slug (e.g., "In Use" becomes "status-in-use")
-                                    $statusClass = 'status-' . str_replace(' ', '-', $status);
-                                    ?>
-                                    <span class="status-badge <?= $statusClass ?>-badge">
-                                        <?= htmlspecialchars($resource['Status_Name'] ?? 'No Status') ?>
-                                    </span>
-                                </td>
-                                <td>
-                                    <div class="action-container">
-                                        <?php if (strtolower($resource['Status_Name']) === 'available'): ?>
-                                            <div class="user-controls">
+                    <?php endwhile; ?>
+                </tbody>
+            </table>
 
-                                                <!-- Reserve/Use Buttons -->
-                                                <button type="button" class="reserve-use open-reserve-btn status-reserved"
-                                                    data-id="<?= $resource['Resource_ID'] ?>"
-                                                    data-resource-name="<?= htmlspecialchars($resource['Resource_Name']) ?>">
-                                                    <span class="material-icons">schedule</span> Reserve
-                                                </button>
-
-                                                <button type="button" class="reserve-use open-use-btn status-available"
-                                                    data-id="<?= $resource['Resource_ID'] ?>"
-                                                    data-resource-name="<?= htmlspecialchars($resource['Resource_Name']) ?>">
-                                                    <span class="material-icons">today</span> Use
-                                                </button>
-                                            </div>
-                                        <?php else: ?>
-                                            <span class="status-badge status-unavailable-badge">
-                                                <span class="material-icons" style="font-size: 14px; vertical-align: middle;">error_outline</span> Unavailable
-                                            </span>
-                                        <?php endif; ?>
-
-                                        <!-- Admin Actions (Grouped inside the same container for alignment) -->
-                                        <?php if (strtolower($_SESSION['role']) === 'admin'): ?>
-                                            <div class="admin-controls">
-                                                <button type="button" class="reserve-use open-update-btn"
-                                                    data-id="<?= $resource['Resource_ID'] ?>"
-                                                    data-name="<?= htmlspecialchars($resource['Resource_Name']) ?>"
-                                                    data-cat="<?= $resource['Categories_ID'] ?>"
-                                                    data-status="<?= $resource['Status_ID'] ?>"> <!-- Pass Status ID here -->
-                                                    <span class="material-icons">edit</span> Edit
-                                                </button>
-
-                                                <form class="ajax-form delete-form" method="POST" action="views/delete_resource.php"
-                                                    onsubmit="return confirm('Delete this resource permanently?');">
-                                                    <input type="hidden" name="resource_id" value="<?= $resource['Resource_ID'] ?>">
-                                                    <button type="submit" class="reserve-use" id="delete-btn">
-                                                        <span class="material-icons">delete</span>
-                                                    </button>
-                                                </form>
-
-                                            </div>
-                                        <?php endif; ?>
-
-                                    </div>
-                                </td>
-                            </tr>
-                        <?php endwhile; ?>
-                    </tbody>
-                </table>
-
-            <?php else: ?>
-                <p>No resources found</p>
-            <?php endif; ?>
-        </div>
+        <?php else: ?>
+            <p>No resources found</p>
+        <?php endif; ?>
     </div>
+
 
     <!-- Match ID to your JS logic and add ajax-form class -->
     <div id="reserve-modal-overlay" class="modal-overlay">

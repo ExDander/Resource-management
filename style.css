@@ -15,7 +15,10 @@
   --color-primary-variant: #111e88;
   --color-dark-variant: #677483;
   --color-background: #f6f6f9;
-  --color-sidebar: #891717;
+
+  --color-sidebar: #7a1123;
+  --color-sidebar-hover: #6b061f;
+  --color-sidebar-active: #6b061f;
 
   --primary-btn: #422e3c;
   --primary-btn-hover: #422e3c;
@@ -245,12 +248,12 @@ aside {
   box-shadow: var(--border-shadow);
 }
 aside .top {
-  background: var(--color-sidebar);
+  background: #6b061f;
   display: flex;
   flex-direction: column;
   justify-content: center; /* Centers them vertically if needed */
-  margin-top: 1.4rem;
-  padding-left: 1.5rem;
+  
+  padding: 1rem 0 1rem 1rem;
   align-items: start;
 }
 
@@ -292,7 +295,7 @@ aside .sidebar a:last-child {
 }
 
 aside .sidebar a.active {
-  background: #6b0606;
+  background: var(--color-sidebar-active);
   color: #f2cb07;
   margin-left: 0;
 }
@@ -300,7 +303,7 @@ aside .sidebar a.active:before {
   content: '';
   width: 6px;
   height: 100%;
-  background: #f2cb07;
+  background:  #f2a807;
 }
 
 aside .sidebar a.active span {
@@ -619,9 +622,7 @@ main .insights > div {
   background-color: var(--returned-light);
   color: var(--returned);
 }
-.table-controls {
-    border-bottom: 1px solid #eee;
-}
+
 
 .filter-form {
     display: flex;
@@ -657,7 +658,7 @@ input[name="search_resource"] {
 
 /* Simple Button */
 .btn-reset {
-    background: none;
+    background: white;
     border: 1px solid #ccc;
     padding: 7px 12px;
     border-radius: 4px;
@@ -672,6 +673,12 @@ input[name="search_resource"] {
     background: #f5f5f5;
 }
 
+.table-controls {
+    background-color: white;
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 15px;
+}
 /* Base style for all action buttons to match the badge */
 .btn-return, .btn-use {
   /* Copying your badge styles */

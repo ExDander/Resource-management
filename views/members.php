@@ -108,9 +108,6 @@ $members = $conn->query($sql);
     </div>
 </div>
 
-
-
-<h1 class="title">Members</h1>
 <div class="resources" id="members">
     <?php if ($members && $members->num_rows > 0): ?>
         <table class="members-table">

@@ -1,27 +1,27 @@
 /* Container with rounded shape */
 .resources {
     overflow-y: auto;
-    border: 1px solid #e0e0e0;
     border-radius: 12px; /* Rounded corners */
     background: white;
     scrollbar-width: thin; /* Firefox minimal scrollbar */
     scrollbar-color: #d1d1d1 transparent;
+    
 }
 
 #dashboard {
     height: calc(100vh - 480px);
 }
 #resources {
-    height: calc(100vh - 250px); 
-}
-#reservations {
     height: calc(100vh - 275px); 
 }
+#reservations {
+    height: calc(100vh - 300px); 
+}
 #members {
-    height: calc(100vh - 100px); 
+    height: calc(100vh - 35px); 
 }
 #history {
-    height: calc(100vh - 150px); 
+    height: calc(100vh - 165px); 
 }
 /* Minimal scrollbar for Chrome, Edge, and Safari */
 .resources::-webkit-scrollbar {
@@ -52,7 +52,7 @@
     text-align: left;
     font-size: 13px;
     color: #666;
-    border-bottom: 1px solid #eee;
+   
     z-index: 1;
 }
 

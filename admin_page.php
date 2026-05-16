@@ -5,8 +5,8 @@ include 'database.php';
 
 /* USER MUST LOG IN FIRST */
 if (!isset($_SESSION['email'])) {
-  header('Location: index.php');
-  exit();
+    header('Location: index.php');
+    exit();
 }
 ?>
 
@@ -28,8 +28,8 @@ if (!isset($_SESSION['email'])) {
     <div class="dashcontainer">
         <aside>
             <div class="top">
-                <h1><?= $_SESSION['departmentDisplay'] ?> <?= $_SESSION['role'] ?></h1>
-                <h2 class="text-muted"><?= $_SESSION['name'] ?></h2>
+                <h1 style="color: white;"><?= $_SESSION['departmentDisplay'] ?> <?= $_SESSION['role'] ?></h1>
+                <h2 style="color: white;"><?= $_SESSION['name'] ?></h2>
             </div>
             <div class="sidebar">
                 <!-- Added data-section attributes and removed 'active' from HTML (we'll handle it in JS) -->
