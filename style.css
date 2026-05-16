@@ -69,7 +69,7 @@
 .indexpage {
   display: flex;
   flex-direction: column; /* Stacks header, container, and footer vertically */
-  background-image: url("../img/malvar-1-scaled_1.jpg");
+  background-image: url("img/malvar-1-scaled_2.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -242,7 +242,7 @@ p a:hover {
   width: 100vw;
   height: 100vh;
   font-size: 0.88rem;
-  background-image: url("../img/malvar-1-scaled_2.jpg");
+  background-image: url("img/malvar-1-scaled_2.jpg");
   /* Scale the image to cover the entire container */
   background-size: cover;
 
